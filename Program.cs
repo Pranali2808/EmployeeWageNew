@@ -12,6 +12,7 @@ namespace EmployeeWageNew
         {
             Console.WriteLine("Welcome to Empolyee Wage Computation Program\n");
             Attendance.GetEmpAttendance();
+            DailyWage.GetDailyWage();
             Console.ReadLine();
             
         }
