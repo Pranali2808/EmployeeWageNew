@@ -16,6 +16,7 @@ namespace EmployeeWageNew
             PartTimeWage.PartTimeEmpWage();
             SwitchCase.DailyEmpWage();
             WageMonth.MonthlyEmpWage();
+            WageTillCondition.GetWageTillCondition();
             Console.ReadLine();
             
         }
