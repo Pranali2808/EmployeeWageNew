@@ -17,6 +17,7 @@ namespace EmployeeWageNew
             SwitchCase.DailyEmpWage();
             WageMonth.MonthlyEmpWage();
             WageTillCondition.GetWageTillCondition();
+            RefactorMethod.RefactorMonthlyEmpWage();
             Console.ReadLine();
             
         }
