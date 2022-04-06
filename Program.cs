@@ -18,6 +18,9 @@ namespace EmployeeWageNew
             WageMonth.MonthlyEmpWage();
             WageTillCondition.GetWageTillCondition();
             RefactorMethod.RefactorMonthlyEmpWage();
+            MultipleCompany.MultiEmpWage("Google",11,3,15 );
+            MultipleCompany.MultiEmpWage("DMart", 20, 2, 10);
+            MultipleCompany.MultiEmpWage("Reliance", 10, 4, 20);
             Console.ReadLine();
             
         }
