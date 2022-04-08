@@ -11,16 +11,36 @@ namespace EmployeeWageNew
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Empolyee Wage Computation Program\n");
-            Attendance.GetEmpAttendance();
-            DailyWage.GetDailyWage();
-            PartTimeWage.PartTimeEmpWage();
-            SwitchCase.DailyEmpWage();
-            WageMonth.MonthlyEmpWage();
-            WageTillCondition.GetWageTillCondition();
-            RefactorMethod.RefactorMonthlyEmpWage();
-            MultipleCompany.MultiEmpWage("Google",11,3,15 );
-            MultipleCompany.MultiEmpWage("DMart", 20, 2, 10);
-            MultipleCompany.MultiEmpWage("Reliance", 10, 4, 20);
+            //UC1
+            //Attendance.GetEmpAttendance();
+            //UC2
+            //DailyWage.GetDailyWage();
+            //UC3
+            //PartTimeWage.PartTimeEmpWage();
+            //UC4
+            //SwitchCase.DailyEmpWage();
+            //UC5
+            //WageMonth.MonthlyEmpWage();
+            //UC6
+            //WageTillCondition.GetWageTillCondition();
+            //UC7
+            //RefactorMethod.RefactorMonthlyEmpWage();
+            //UC8
+            //MultipleCompany.MultiEmpWage("Google", 11, 3, 15);
+            //MultipleCompany.MultiEmpWage("DMart", 20, 2, 10);
+            //MultipleCompany.MultiEmpWage("Reliance", 10, 4, 20);
+            //UC9
+            //empWageBuilder.addCompanyEmpWage("Google", 20, 20, 100);
+            //empWageBuilder.addCompanyEmpWage("DMart", 30, 24, 160);
+            //empWageBuilder.addCompanyEmpWage("Reliance", 30, 24, 160);
+            //empWageBuilder.computeEmpWage();
+            // UC10
+            EmpWageBuilderArray empWageBuilder = new EmpWageBuilderArray();
+            empWageBuilder.AddCompanyEmpWage("Google", 10, 4, 20);
+            empWageBuilder.AddCompanyEmpWage("Microsoft", 20, 5, 20);
+            empWageBuilder.AddCompanyEmpWage("Deloitte", 30, 3, 30);
+            empWageBuilder.ComputeEmpWage();
+
             Console.ReadLine();
             
         }
