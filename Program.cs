@@ -41,6 +41,12 @@ namespace EmployeeWageNew
             //empWageBuilder.AddCompanyEmpWage("Deloitte", 30, 3, 30);
             //empWageBuilder.ComputeEmpWage();
             //UC11
+            //EmpWageBuilderArray empWageBuilder = new EmpWageBuilderArray();
+            //empWageBuilder.AddCompanyEmpWage("Google", 10, 4, 20);
+            //empWageBuilder.AddCompanyEmpWage("Microsoft", 20, 5, 20);
+            //empWageBuilder.AddCompanyEmpWage("Deloitte", 30, 3, 30);
+            //empWageBuilder.ComputeEmpWage();
+            //UC-12 call methods
             EmpWageBuilderArray empWageBuilder = new EmpWageBuilderArray();
             empWageBuilder.AddCompanyEmpWage("Google", 10, 4, 20);
             empWageBuilder.AddCompanyEmpWage("Microsoft", 20, 5, 20);
