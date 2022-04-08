@@ -6,44 +6,69 @@ using System.Threading.Tasks;
 
 namespace EmployeeWageNew
 {
-    internal class EmpWageBuilder
+    class EmpWageBuilder
     {
-        public const int IS_PART_TIME = 1, IS_FULL_TIME = 2;
-        private string company;
-        private int empRatePerHour, numOfWorkingDays, maxHoursPerMonth, totalEmpWage;
-        public EmpWageBuilder(string company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth)
+        public const int EMP_FULLTIME = 1, EMP_PARTTIME = 2;
+
+        private List<CompanyEmpWage> companyEmpWageList;
+        private List<CompanyEmpWage> dailyAndTotalWageList;
+
+        public static Random random = new Random();
+
+        public EmpWageBuilder()
         {
-            this.company = company;
-            this.empRatePerHour = empRatePerHour;
-            this.numOfWorkingDays = numOfWorkingDays;
-            this.maxHoursPerMonth = maxHoursPerMonth;
+            companyEmpWageList = new List<CompanyEmpWage>();
+            dailyAndTotalWageList = new List<CompanyEmpWage>();
         }
-        public void computeEmpWage()
+
+        //Manage multiple companies using list
+        public void AddCompanyEmpWageToList(string company, int emp_Wage_Per_Hr, int working_Days_Per_Month, int max_Hrs_Per_Month)
         {
-            int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
-            while (totalEmpHrs <= this.maxHoursPerMonth && totalWorkingDays < this.numOfWorkingDays) {
-                totalWorkingDays++;
-                Random random = new Random();
-                int empCheck = random.Next(0, 3);
-                switch (empCheck) {
-                    case IS_PART_TIME:
-                        empHrs = 4;
-                        break;
-                    case IS_FULL_TIME:
+            CompanyEmpWage companyEmpWage = new CompanyEmpWage(company, emp_Wage_Per_Hr, working_Days_Per_Month, max_Hrs_Per_Month);
+            companyEmpWageList.Add(companyEmpWage);
+        }
+
+
+        public void ComputeEmpWage()
+        {
+            foreach (CompanyEmpWage empWage in companyEmpWageList) {
+                empWage.SetTotalEmpWage(ComputeEmpWage(empWage));
+                Console.WriteLine(empWage.ToString());
+            }
+        }
+
+        private int ComputeEmpWage(CompanyEmpWage companyEmpWage)
+        {
+            int empHrs = 0, total_Emp_Hrs = 0, totalWorkingDays = 1, daily_Emp_Wage = 0;
+
+            while (totalWorkingDays <= companyEmpWage.working_Days_Per_Month && total_Emp_Hrs <= companyEmpWage.max_Hrs_Per_Month) {
+                int randomInput = random.Next(0, 3);
+
+                switch (randomInput) {
+                    case EMP_FULLTIME:
                         empHrs = 8;
+                        break;
+                    case EMP_PARTTIME:
+                        empHrs = 4;
                         break;
                     default:
                         empHrs = 0;
                         break;
                 }
-                totalEmpHrs += empHrs;
-                Console.WriteLine("Day#:" + totalWorkingDays + " Employee Hours : " + empHrs);
+                daily_Emp_Wage = empHrs * companyEmpWage.emp_Wage_Per_Hr;
+                Console.WriteLine("Employee wage for day {0} is: {1} for {2} Hrs", totalWorkingDays, daily_Emp_Wage, empHrs);
+                companyEmpWage.total_Emp_Wage += daily_Emp_Wage;
+                total_Emp_Hrs += empHrs;
+                totalWorkingDays++;
+
+                CompanyEmpWage dailyAndTotalWage = new CompanyEmpWage(companyEmpWage.company, daily_Emp_Wage, companyEmpWage.total_Emp_Wage);
+                dailyAndTotalWageList.Add(dailyAndTotalWage);
+
             }
-            totalEmpWage = totalEmpHrs * this.empRatePerHour;
+            Console.WriteLine("Total Days: {0}, Total working hours: {1}", (totalWorkingDays - 1), total_Emp_Hrs);
+            Console.WriteLine("Total Employee Wage for company " + companyEmpWage.company + " is: " + companyEmpWage.total_Emp_Wage + "\n");
+            return companyEmpWage.total_Emp_Wage;
         }
-        public string toString()
-        {
-            return "The Total Employee Wage for Company " + this.company + " is " + this.totalEmpWage;
-        }
+
     }
 }
